@@ -5,13 +5,13 @@ export class User {
 	public name: string
 	public email: string
 	public photoUrl: string
-	public team: Team[]
+	public teams: Team[]
 
 	constructor(user: any) {
 		this.id = user.id
 		this.name = user.name
 		this.email = user.email
 		this.photoUrl = user.photo_url
-		this.team = user.teams
+		this.teams = user.teams.map((i: any) => new Team(i))
 	}
 }
