@@ -8,6 +8,7 @@ import json from 'rollup-plugin-json'
 import { terser } from 'rollup-plugin-terser'
 
 const pkg = require('./package.json')
+const dependencies = Object.keys(pkg.dependencies)
 
 const libraryName = 'OhDear'
 
@@ -28,75 +29,75 @@ const commonPlugin = [
 ]
 
 export default [
-	{
-		input: `src/${libraryName}.ts`,
-		output: {
-			file: pkg.browser,
-			name: camelCase(libraryName),
-			format: 'umd',
-			sourcemap: true,
-			globals: {
-				axios: 'axios'
-			}
-		},
+	// {
+	// 	input: `src/${libraryName}.ts`,
+	// 	output: {
+	// 		file: pkg.browser,
+	// 		name: camelCase(libraryName),
+	// 		format: 'umd',
+	// 		sourcemap: true,
+	// 		globals: {
+	// 			axios: 'axios'
+	// 		}
+	// 	},
 
-		// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-		external: ['axios', 'fom-data'],
-		watch: {
-			include: 'src/**'
-		},
-		plugins: [
-			...commonPlugin,
-			babel({
-				exclude: 'node_modules/**'
-			})
-		]
-	},
-	{
-		input: `src/${libraryName}.ts`,
-		output: {
-			file: pkg.browser.replace(/\.js$/, '.min.js'),
-			name: camelCase(libraryName),
-			format: 'umd',
-			sourcemap: true,
-			globals: {
-				axios: 'axios'
-			}
-		},
+	// 	// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
+	// 	external: ['axios', 'fom-data'],
+	// 	watch: {
+	// 		include: 'src/**'
+	// 	},
+	// 	plugins: [
+	// 		...commonPlugin,
+	// 		babel({
+	// 			exclude: 'node_modules/**'
+	// 		})
+	// 	]
+	// },
+	// {
+	// 	input: `src/${libraryName}.ts`,
+	// 	output: {
+	// 		file: pkg.browser.replace(/\.js$/, '.min.js'),
+	// 		name: camelCase(libraryName),
+	// 		format: 'umd',
+	// 		sourcemap: true,
+	// 		globals: {
+	// 			axios: 'axios'
+	// 		}
+	// 	},
 
-		// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-		external: ['axios', 'fom-data'],
-		watch: {
-			include: 'src/**'
-		},
-		plugins: [
-			...commonPlugin,
-			babel({
-				exclude: 'node_modules/**'
-			}),
-			terser()
-		]
-	},
-	{
-		input: `src/${libraryName}.ts`,
-		output: { file: pkg.module, format: 'es', sourcemap: true },
-		// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-		external: ['axios', 'fom-data'],
-		watch: {
-			include: 'src/**'
-		},
-		plugins: [
-			...commonPlugin,
-			babel({
-				exclude: 'node_modules/**'
-			})
-		]
-	},
+	// 	// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
+	// 	external: ['axios', 'fom-data'],
+	// 	watch: {
+	// 		include: 'src/**'
+	// 	},
+	// 	plugins: [
+	// 		...commonPlugin,
+	// 		babel({
+	// 			exclude: 'node_modules/**'
+	// 		}),
+	// 		terser()
+	// 	]
+	// },
+	// {
+	// 	input: `src/${libraryName}.ts`,
+	// 	output: { file: pkg.module, format: 'es', sourcemap: true },
+	// 	// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
+	// 	external: ['axios', 'fom-data'],
+	// 	watch: {
+	// 		include: 'src/**'
+	// 	},
+	// 	plugins: [
+	// 		...commonPlugin,
+	// 		babel({
+	// 			exclude: 'node_modules/**'
+	// 		})
+	// 	]
+	// },
 	{
 		input: `src/${libraryName}.ts`,
 		output: { file: pkg.main, name: camelCase(libraryName), format: 'cjs', sourcemap: true },
 		// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-		external: ['axios', 'fom-data'],
+		external: dependencies,
 		watch: {
 			include: 'src/**'
 		},
