@@ -35,7 +35,6 @@ export class Client {
 
 			return res.data
 		} catch (error) {
-			console.log(error)
 			return this._errorhandler(error)
 		}
 	}

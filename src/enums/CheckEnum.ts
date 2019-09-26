@@ -1,4 +1,4 @@
-export enum CheckType {
+export enum CheckTypeEnum {
 	uptime,
 	broken_links,
 	certificate_health,
@@ -6,7 +6,7 @@ export enum CheckType {
 	certificate_transparency
 }
 
-export enum CheckResult {
+export enum CheckResultEnum {
 	succeeded,
 	warning,
 	failed,
