@@ -30,19 +30,21 @@ export class Site {
 		this.updatedAt = site.updated_at
 	}
 
-	public async delete(): Promise<Site> {
+	public delete(): Promise<Site> {
 		return this.ohDear.Site.deleteSite(this.id)
 	}
 
-	public async brokenLinks(): Promise<BrokenLink[]> {
+	public brokenLinks(): Promise<BrokenLink[]> {
 		return this.ohDear.BrokenLink.brokenLinks(this.id)
 	}
 
-	public async uptime(startedAt: string, endedAt: string, split: string): Promise<Uptime[]> {
+	public uptime(startedAt: string, endedAt: string, split: string): Promise<Uptime[]> {
 		return this.ohDear.Uptime.uptime(this.id, startedAt, endedAt, split)
 	}
 
-	public async downtime(startedAt: string, endedAt: string): Promise<Downtime[]> {
+	public downtime(startedAt: string, endedAt: string): Promise<Downtime[]> {
 		return this.ohDear.Downtime.downtime(this.id, startedAt, endedAt)
 	}
 }
+
+export default Site

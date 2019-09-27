@@ -30,7 +30,7 @@ export class Check {
 		this.enabled = updatedCheck.enabled
 	}
 
-	public async requestRun(): Promise<void> {
-		await this.ohDear.Check.requestRun(this.id)
+	public requestRun(): Promise<Check> {
+		return this.ohDear.Check.requestRun(this.id)
 	}
 }
