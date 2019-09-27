@@ -1,3 +1,9 @@
+/**
+ * Broken Link
+ *
+ * @export
+ * @class BrokenLink
+ */
 export class BrokenLink {
 	public statusCode: number
 	public crawledUrl: string

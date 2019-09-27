@@ -8,3 +8,5 @@ export class ManagesUserService extends ApiService {
 		return new User(res)
 	}
 }
+
+export default ManagesUserService
