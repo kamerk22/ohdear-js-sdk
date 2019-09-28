@@ -1,8 +1,19 @@
 const SEO = require('./seo')
+const API = require('./api-sidebar.json')
 
 module.exports = {
-	title: 'OhDear Javascript SDK',
-	description: 'Just playing around',
+	title: 'Oh Dear! Javascript SDK',
+	description: 'Javascript SDK to work with the Oh Dear API.',
+	head: [
+		['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
+		['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
+		['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
+		['link', { rel: 'manifest', href: '/site.webmanifest' }],
+		['link', { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#e32929' }],
+		['link', { rel: 'shortcut icon', href: '/favicon.ico' }],
+		['meta', { name: 'msapplication-TileColor', content: '#e32929' }],
+		['meta', { name: 'theme-color', content: '#e32929' }]
+	],
 	plugins: {
 		autometa: SEO
 	},
@@ -10,10 +21,12 @@ module.exports = {
 		nav: [
 			{ text: 'Home', link: '/' },
 			{ text: 'Guide', link: '/guide/' },
-			{ text: 'Ohdear.app', link: 'https://ohdear,app' }
+			{ text: 'API', link: '/api/' },
+			{ text: 'Oh Dear !', link: 'https://ohdear.app' }
 		],
 		sidebar: {
-			'/guide/': getGuideSidebar('Guide', 'Resources')
+			'/guide/': getGuideSidebar('Guide', 'Resources'),
+			'/api/': API
 		}
 	}
 }
