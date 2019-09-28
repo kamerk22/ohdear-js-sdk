@@ -3,6 +3,6 @@
 !seo.js
 !api-sidebar.json
 !api-sidebar-relative.json
-!public/*
-!style/*
+!public
+!style/*.styl
 !.gitignore
