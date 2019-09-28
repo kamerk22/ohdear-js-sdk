@@ -1,5 +1,6 @@
 *
 !api/
 !.vuepress
+!guide
 !guide/*
 !.gitignore
