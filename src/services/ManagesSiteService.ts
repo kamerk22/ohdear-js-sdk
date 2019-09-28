@@ -1,6 +1,6 @@
 import { ApiService } from './ApiService'
 import { Site } from '../resources/Site'
-import { CreateSiteInput } from '../interfaces/CreateSiteInput'
+import { FObject } from '../Client'
 
 export class ManagesSiteService extends ApiService {
 	static PATH: string = 'sites'
@@ -20,7 +20,7 @@ export class ManagesSiteService extends ApiService {
 		return new Site(res, this.ohDear)
 	}
 
-	public async createSite(data: CreateSiteInput): Promise<Site> {
+	public async createSite(data: FObject): Promise<Site> {
 		const res = await this.client.post(ManagesSiteService.PATH, data)
 		return new Site(res, this.ohDear)
 	}

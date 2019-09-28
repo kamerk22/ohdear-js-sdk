@@ -1,0 +1,8 @@
+*
+!config.js
+!seo.js
+!api-sidebar.json
+!api-sidebar-relative.json
+!public/*
+!style/*
+!.gitignore
