@@ -1,5 +1,5 @@
-const SEO = require('./seo')
 const API = require('./api-sidebar.json')
+const SEO = require('./seo')
 
 module.exports = {
 	title: 'Oh Dear! Javascript SDK',

@@ -43,10 +43,10 @@ export class Site {
 	/**
 	 * The last run date of the site.
 	 *
-	 * @type {Date}
+	 * @type {string}
 	 * @memberof Site
 	 */
-	public latestRunDate: Date
+	public latestRunDate: string
 	/**
 	 * The result of the check.
 	 *
@@ -64,17 +64,17 @@ export class Site {
 	/**
 	 * The created at date of the site.
 	 *
-	 * @type {Date}
+	 * @type {string}
 	 * @memberof Site
 	 */
-	public createdAt: Date
+	public createdAt: string
 	/**
 	 * The updated at date of the site.
 	 *
-	 * @type {Date}
+	 * @type {string}
 	 * @memberof Site
 	 */
-	public updatedAt: Date
+	public updatedAt: string
 	/**
 	 * The OhDear class instance
 	 *
