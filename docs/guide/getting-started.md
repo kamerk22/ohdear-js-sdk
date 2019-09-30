@@ -1,66 +1,60 @@
-# Getting Started
+---
+title: Getting Started
+
+date: 2018-12-28T15:18:13+0200
+
+description: "Documentation on getting started managing the monitoring of your websites with the Oh Dear! Node SDK."
+
+tags:
+  - https
+  - ssl
+  - tls 
+  - certificate
+  - mixed content
+  - monitoring
+  - alerting
+  - javascript sdk
+---
+
+# {{$page.title}}
 
 ::: warning COMPATIBILITY NOTE
-VuePress requires Node.js >= 8.
+OhDear Node SDK requires Node.js >= 8.
 :::
 
-## Global Installation
+## Environmental preparation
 
-If you only want to play around with VuePress, you can install it globally:
-
-``` bash
-# install globally
-yarn global add vuepress # OR npm install -g vuepress
-
-# create a markdown file
-echo '# Hello VuePress' > README.md
-
-# start writing
-vuepress dev
-
-# build
-vuepress build
-```
-
-## Inside an Existing Project
-
-If you have an existing project and would like to keep documentation inside the project, you should install VuePress as a local dependency. This setup also allows you to use CI or services like Netlify for automatic deployment on push.
+First you should have [node](https://nodejs.org), and make sure it's version 8.10 or above. 
 
 ``` bash
-# install as a local dependency
-yarn add -D vuepress # OR npm install -D vuepress
-
-# create a docs directory
-mkdir docs
-# create a markdown file
-echo '# Hello VuePress' > docs/README.md
+node -v
+8.1x
 ```
 
-::: warning
-We currently recommend using [Yarn](https://yarnpkg.com/en/) instead of npm when installing VuePress into an existing project that has webpack 3.x as a dependency, because npm fails to generate the correct dependency tree in this case.
-:::
+## Installation
 
-Then, add some scripts to `package.json`:
-
-``` json
-{
-  "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
-  }
-}
-```
-
-You can now start writing with:
+Install the latest version of sdk vie **yarn** or **npm**
 
 ``` bash
-yarn docs:dev # OR npm run docs:dev
+yarn add ohdear-node-sdk
+```
+OR
+```bash 
+npm install oh-dear-sdk
 ```
 
-To generate static assets, run:
+## Authentication
+
+You can use API key for authentication. If you don't have an API key yet, read up on the [API authentication first](https://ohdear.app/docs/api/authentication).
+
+
+Next, create an instance of the SDK. This takes your API key as a single, mandatory, parameter.
 
 ``` bash
-yarn docs:build # Or npm run docs:build
+const lib = require('ohdear-ndoe-sdk');
+
+const OhDear = new lib('YOUR_API_KEY');
 ```
 
-By default, the built files will be in `.vuepress/dist`, which can be configured via the `dest` field in `.vuepress/config.js`. The built files can be deployed to any static file server. See [Deployment Guide](deploy.md) for guides on deploying to popular services.
+
+<HelpBlock/>

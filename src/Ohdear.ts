@@ -125,7 +125,7 @@ export class OhDear {
 		this.Uptime = new ManagesUptimeService(this)
 		this.Downtime = new ManagesDowntimeService(this)
 		this.CertificateHealth = new ManageCertificateHealthService(this)
-		this.StatusPage = new ManagesStatusPageService(this.client)
+		this.StatusPage = new ManagesStatusPageService(this)
 	}
 }
 

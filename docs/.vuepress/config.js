@@ -14,15 +14,24 @@ module.exports = {
 		['meta', { name: 'msapplication-TileColor', content: '#e32929' }],
 		['meta', { name: 'theme-color', content: '#e32929' }]
 	],
-	plugins: {
-		autometa: SEO
-	},
+	plugins: [
+		['autometa', SEO],
+		['@vuepress/back-to-top', true],
+		[
+			'@vuepress/pwa',
+			{
+				serviceWorker: true,
+				updatePopup: true
+			}
+		]
+	],
+	smoothScroll: true,
 	themeConfig: {
 		nav: [
 			{ text: 'Home', link: '/' },
 			{ text: 'Guide', link: '/guide/' },
 			{ text: 'API', link: '/api/' },
-			{ text: 'Oh Dear !', link: 'https://ohdear.app' }
+			{ text: 'Oh Dear!', link: 'https://ohdear.app' }
 		],
 		sidebar: {
 			'/guide/': getGuideSidebar('Guide', 'Resources'),
@@ -36,13 +45,13 @@ function getGuideSidebar(groupA, groupB) {
 		{
 			title: groupA,
 			collapsable: false,
-			children: ['', 'getting-started']
+			children: [['', 'Introduction'], 'getting-started']
 		},
 		{
 			title: groupB,
 			collapsable: false,
 			children: [
-				'user-info',
+				['user-info', 'User Info'],
 				'sites',
 				'checks',
 				'uptime',

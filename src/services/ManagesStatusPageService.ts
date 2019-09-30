@@ -1,6 +1,5 @@
-import { Uptime } from '../resources/Uptime'
 import { ApiService } from './ApiService'
-import StatusPage from '../resources/StatusPage'
+import { StatusPage } from '../resources/StatusPage'
 import { CreateStatusPageUpdateInput } from '../interfaces/CreateStatusPageUpdateInput'
 import { StatusPageUpdate } from '../resources/StatusPageUpdate'
 

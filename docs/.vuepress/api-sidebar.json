@@ -15,11 +15,14 @@
       "classes/managesdowntimeservice",
       "classes/managesmixedcontentservice",
       "classes/managessiteservice",
+      "classes/managesstatuspageservice",
       "classes/managesuptimeservice",
       "classes/managesuserservice",
       "classes/mixedcontent",
       "classes/ohdear",
       "classes/site",
+      "classes/statuspage",
+      "classes/statuspageupdate",
       "classes/team",
       "classes/uptime",
       "classes/user"
@@ -30,13 +33,15 @@
     "children": [
       "enums/certificatecheckenum",
       "enums/checkresultenum",
-      "enums/checktypeenum"
+      "enums/checktypeenum",
+      "enums/statuspageseverity"
     ]
   },
   {
     "title": "Interfaces",
     "children": [
-      "interfaces/fobject",
+      "interfaces/createsiteinput",
+      "interfaces/createstatuspageupdateinput",
       "interfaces/iobject"
     ]
   }
