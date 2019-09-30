@@ -1,3 +1,9 @@
+/**
+ * Site check type enum.
+ *
+ * @export
+ * @enum {number}
+ */
 export enum CheckTypeEnum {
 	uptime,
 	broken_links,
@@ -6,6 +12,12 @@ export enum CheckTypeEnum {
 	certificate_transparency
 }
 
+/**
+ * Site check result enum.
+ *
+ * @export
+ * @enum {number}
+ */
 export enum CheckResultEnum {
 	succeeded,
 	warning,

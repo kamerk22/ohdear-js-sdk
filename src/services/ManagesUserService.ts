@@ -1,10 +1,22 @@
 import { User } from '../resources/User'
 import { ApiService } from './ApiService'
 
+/**
+ * Manages user services.
+ *
+ * @export
+ * @class ManagesUserService
+ * @extends {ApiService}
+ */
 export class ManagesUserService extends ApiService {
-	static PATH: string = 'sites'
+	/**
+	 * Get all information of current user.
+	 *
+	 * @returns {Promise<User>}
+	 * @memberof ManagesUserService
+	 */
 	public async me(): Promise<User> {
-		const res = await this.client.get(ManagesUserService.PATH)
+		const res = await this.client.get('me')
 		return new User(res)
 	}
 }

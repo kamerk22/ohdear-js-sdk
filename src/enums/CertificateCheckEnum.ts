@@ -1,3 +1,9 @@
+/**
+ * Certificate check enum.
+ *
+ * @export
+ * @enum {number}
+ */
 export enum CertificateCheckEnum {
 	notFound,
 	expiresSoon,

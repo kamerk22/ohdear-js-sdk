@@ -13,6 +13,14 @@ import OhDear from '../OhDear'
  */
 export class Site {
 	/**
+	 * The OhDear class instance
+	 *
+	 * @protected
+	 * @type {OhDear}
+	 * @memberof Site
+	 */
+	protected ohDear: OhDear
+	/**
 	 * The id of the site.
 	 *
 	 * @type {number}
@@ -75,14 +83,6 @@ export class Site {
 	 * @memberof Site
 	 */
 	public updatedAt: string
-	/**
-	 * The OhDear class instance
-	 *
-	 * @protected
-	 * @type {OhDear}
-	 * @memberof Site
-	 */
-	protected ohDear: OhDear
 
 	/**
 	 * Creates an instance of Site.
