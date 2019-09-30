@@ -7,6 +7,7 @@ import { ManagesSiteService } from './services/ManagesSiteService'
 import { ManagesUserService } from './services/ManagesUserService'
 import { ManageCertificateHealthService } from './services/ManagesCertificateHealthService'
 import { Client } from './Client'
+import { ManagesStatusPageService } from './services/ManagesStatusPageService'
 
 const baseURL: string = 'https://ohdear.app/api/'
 
@@ -21,6 +22,7 @@ export default class OhDear {
 	public Uptime: ManagesUptimeService
 	public Downtime: ManagesDowntimeService
 	public CertificateHealth: ManageCertificateHealthService
+	public StatusPage: ManagesStatusPageService
 
 	constructor(apiKey: string, client?: Client) {
 		this.apiKey = apiKey
@@ -44,5 +46,6 @@ export default class OhDear {
 		this.Uptime = new ManagesUptimeService(this)
 		this.Downtime = new ManagesDowntimeService(this)
 		this.CertificateHealth = new ManageCertificateHealthService(this)
+		this.StatusPage = new ManagesStatusPageService(this.client)
 	}
 }
