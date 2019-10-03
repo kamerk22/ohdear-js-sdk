@@ -8,16 +8,17 @@ import { ManagesUserService } from './services/ManagesUserService'
 import { ManageCertificateHealthService } from './services/ManagesCertificateHealthService'
 import { Client } from './Client'
 import { ManagesStatusPageService } from './services/ManagesStatusPageService'
+import { ManagesStatusPageUpdateService } from './services/ManagesStatusPageUpdateService'
 
 const baseURL: string = 'https://ohdear.app/api/'
 
 /**
  * OhDear SDK
  *
- * @export
+ *
  * @class OhDear
  */
-export class OhDear {
+class OhDear {
 	/**
 	 * An api token generated from https://ohdear.app/user-settings/api
 	 *
@@ -95,27 +96,31 @@ export class OhDear {
 	 * @memberof OhDear
 	 */
 	public StatusPage: ManagesStatusPageService
+	/**
+	 * StatusPageUpdate resource.
+	 *
+	 * @type {ManagesStatusPageUpdateService}
+	 * @memberof OhDear
+	 */
+	public StatusPageUpdate: ManagesStatusPageUpdateService
 
 	/**
 	 * Creates an instance of OhDear.
 	 *
 	 * @param {string} apiKey
-	 * @param {Client} [client]
 	 * @memberof OhDear
 	 */
-	constructor(apiKey: string, client?: Client) {
+	constructor(apiKey: string) {
 		this.apiKey = apiKey
-		this.client = client
-			? client
-			: new Client({
-					baseURL: baseURL,
-					headers: {
-						Accept: 'application/json',
-						Authorization: `Bearer ${this.apiKey}`,
-						'Content-Type': 'application/json'
-					},
-					timeout: 15000
-			  })
+		this.client = new Client({
+			baseURL: baseURL,
+			headers: {
+				Accept: 'application/json',
+				Authorization: `Bearer ${this.apiKey}`,
+				'Content-Type': 'application/json'
+			},
+			timeout: 15000
+		})
 
 		this.UserInfo = new ManagesUserService(this)
 		this.Site = new ManagesSiteService(this)
@@ -126,6 +131,7 @@ export class OhDear {
 		this.Downtime = new ManagesDowntimeService(this)
 		this.CertificateHealth = new ManageCertificateHealthService(this)
 		this.StatusPage = new ManagesStatusPageService(this)
+		this.StatusPageUpdate = new ManagesStatusPageUpdateService(this)
 	}
 }
 

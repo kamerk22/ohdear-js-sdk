@@ -27,7 +27,7 @@ export interface CreateStatusPageUpdateInput {
 	 * @type {string}
 	 * @memberof CreateStatusPageUpdateInput
 	 */
-	message: string
+	message?: string
 	/**
 	 * Serverity of the update.
 	 *

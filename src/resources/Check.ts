@@ -82,9 +82,8 @@ export class Check {
 	 * @returns {Promise<void>}
 	 * @memberof Check
 	 */
-	public async enable(): Promise<void> {
-		const updatedCheck = await this.ohDear.Check.enableCheck(this.id)
-		this.enabled = updatedCheck.enabled
+	public async enable(): Promise<Check> {
+		return this.ohDear.Check.enableCheck(this.id)
 	}
 
 	/**
@@ -93,9 +92,8 @@ export class Check {
 	 * @returns {Promise<void>}
 	 * @memberof Check
 	 */
-	public async disable(): Promise<void> {
-		const updatedCheck = await this.ohDear.Check.disableCheck(this.id)
-		this.enabled = updatedCheck.enabled
+	public async disable(): Promise<Check> {
+		return this.ohDear.Check.disableCheck(this.id)
 	}
 
 	/**

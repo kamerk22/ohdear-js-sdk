@@ -5,8 +5,8 @@
  * @enum {number}
  */
 export enum StatusPageSeverity {
-	informational,
-	warning,
-	high,
-	resolved
+	'informational',
+	'warning',
+	'high',
+	'resolved'
 }

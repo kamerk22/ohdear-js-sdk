@@ -1,3 +1,8 @@
+import { StatusPageUpdate } from './StatusPageUpdate'
+
+import { CreateStatusPageUpdateInput } from '../interfaces/CreateStatusPageUpdateInput'
+import OhDear from '../OhDear'
+
 /**
  * StatusPage resource.
  *
@@ -5,6 +10,14 @@
  * @class StatusPage
  */
 export class StatusPage {
+	/**
+	 * The OhDear class instance
+	 *
+	 * @protected
+	 * @type {OhDear}
+	 * @memberof Site
+	 */
+	protected ohDear: OhDear
 	/**
 	 * The id of the status page.
 	 *
@@ -61,7 +74,8 @@ export class StatusPage {
 	 * @param {*} statusPage
 	 * @memberof StatusPage
 	 */
-	constructor(statusPage: any) {
+	constructor(statusPage: any, ohDear: OhDear) {
+		this.ohDear = ohDear
 		this.id = statusPage.id
 		this.title = statusPage.title
 		this.domain = statusPage.domain
@@ -69,5 +83,36 @@ export class StatusPage {
 		this.fullUrl = statusPage.full_url
 		this.timezone = statusPage.timezone
 		this.summarizedStatus = statusPage.summarized_status
+	}
+
+	/**
+	 * Retrive all updates of given status page id.
+	 *
+	 * @returns {Promise<StatusPageUpdate[]>}
+	 * @memberof StatusPageUpdate
+	 */
+	public updates(): Promise<StatusPageUpdate[]> {
+		return this.ohDear.StatusPageUpdate.updates(this.id)
+	}
+
+	/**
+	 * Post a status update.
+	 *
+	 * @param {CreateStatusPageUpdateInput} data
+	 * @returns {Promise<StatusPageUpdate>}
+	 * @memberof StatusPageUpdate
+	 */
+	public postUpdate(data: CreateStatusPageUpdateInput): Promise<StatusPageUpdate> {
+		return this.ohDear.StatusPageUpdate.postUpdate(data)
+	}
+
+	/**
+	 * Delete a status update
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof StatusPageUpdate
+	 */
+	public deleteUpdate(): Promise<void> {
+		return this.ohDear.StatusPageUpdate.deleteUpdate(this.id)
 	}
 }

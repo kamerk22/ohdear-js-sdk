@@ -1,7 +1,6 @@
 // https://github.com/brybrophy/axios-core-api/blob/master/index.ts
 
 import axios, { AxiosError, AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios'
-
 /**
  * Input object interface
  *
@@ -57,7 +56,6 @@ export class Client {
 	public async delete(url: string): Promise<AxiosResponse['data']> {
 		try {
 			const res = await this._AXIOS.delete(url)
-
 			return res.data
 		} catch (error) {
 			return this._errorhandler(error)
@@ -101,24 +99,6 @@ export class Client {
 	}
 
 	/**
-	 * PUT request.
-	 *
-	 * @param {string} url
-	 * @param {IObject} data
-	 * @returns {Promise<AxiosResponse['data']>}
-	 * @memberof Client
-	 */
-	public async put(url: string, data: IObject): Promise<AxiosResponse['data']> {
-		try {
-			const res = await this._AXIOS.put(url, data)
-
-			return res.data
-		} catch (error) {
-			return this._errorhandler(error)
-		}
-	}
-
-	/**
 	 * Generate Axios instance.
 	 *
 	 * @private
@@ -139,17 +119,29 @@ export class Client {
 	 * @memberof Client
 	 */
 	private _errorhandler(error: AxiosError): void {
+		// Error 😨
 		if (error.response) {
-			console.error(error.response.data)
-			console.error(error.response.status)
-			console.error(error.response.headers)
+			/*
+			 * The request was made and the server responded with a
+			 * status code that falls out of the range of 2xx
+			 */
+			if (error.response.status === 422 || error.response.status === 400) {
+				throw new Error(error.response.data)
+			}
+			if (error.response.status === 404) {
+				throw new Error('The resource you are looking for could not be found.')
+			}
 		} else if (error.request) {
-			console.error(error.request)
+			/*
+			 * The request was made but no response was received, `error.request`
+			 * is an instance of XMLHttpRequest in the browser and an instance
+			 * of http.ClientRequest in Node.js
+			 */
+			throw new Error(error.request)
 		} else {
-			console.error('Api Core Error', error.message)
+			// Something happened in setting up the request and triggered an Error
+			throw new Error(error.message)
 		}
-
-		return console.error(error.config)
 	}
 }
 

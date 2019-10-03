@@ -4,6 +4,8 @@ import { CheckResultEnum } from '../enums/CheckEnum'
 import { BrokenLink } from './BrokenLink'
 import { Uptime } from './Uptime'
 import OhDear from '../OhDear'
+import MixedContent from './MixedContent'
+import CertificateHealth from './CertificateHealth'
 
 /**
  * Site Resource.
@@ -107,15 +109,15 @@ export class Site {
 	/**
 	 * Delete the given site.
 	 *
-	 * @returns {Promise<Site>}
+	 * @returns {Promise<void>}
 	 * @memberof Site
 	 */
-	public delete(): Promise<Site> {
+	public delete(): Promise<void> {
 		return this.ohDear.Site.deleteSite(this.id)
 	}
 
 	/**
-	 * Get the broken links for this site.
+	 * Get the broken links for the site.
 	 *
 	 * @returns {Promise<BrokenLink[]>}
 	 * @memberof Site
@@ -125,7 +127,17 @@ export class Site {
 	}
 
 	/**
-	 * Get the uptime percentages for a site.
+	 * Get the mixed content for the site.
+	 *
+	 * @returns {Promise<MixedContent[]>}
+	 * @memberof Site
+	 */
+	public mixedContent(): Promise<MixedContent[]> {
+		return this.ohDear.MixedContent.mixedContent(this.id)
+	}
+
+	/**
+	 * Get the uptime percentages for the site.
 	 *
 	 * @param {string} startedAt Must be in format Ymdhis
 	 * @param {string} endedAt Must be in format Ymdhis
@@ -133,12 +145,12 @@ export class Site {
 	 * @returns {Promise<Uptime[]>}
 	 * @memberof Site
 	 */
-	public uptime(startedAt: string, endedAt: string, split: string): Promise<Uptime[]> {
+	public uptime(startedAt: string, endedAt: string, split: string = 'month'): Promise<Uptime[]> {
 		return this.ohDear.Uptime.uptime(this.id, startedAt, endedAt, split)
 	}
 
 	/**
-	 * Get the uptime percentages for a site.
+	 * Get the uptime percentages for the site.
 	 *
 	 * @param {string} startedAt
 	 * @param {string} endedAt
@@ -146,7 +158,7 @@ export class Site {
 	 * @memberof Site
 	 */
 	/**
-	 * Get the downtime periods for a site.
+	 * Get the downtime periods for the site.
 	 *
 	 * @param {string} startedAt Must be in format Ymdhis
 	 * @param {string} endedAt Must be in format Ymdhis
@@ -155,6 +167,16 @@ export class Site {
 	 */
 	public downtime(startedAt: string, endedAt: string): Promise<Downtime[]> {
 		return this.ohDear.Downtime.downtime(this.id, startedAt, endedAt)
+	}
+
+	/**
+	 * Get the certificate health for the site.
+	 *
+	 * @returns {Promise<CertificateHealth>}
+	 * @memberof Site
+	 */
+	public certificateHealth(): Promise<CertificateHealth> {
+		return this.ohDear.CertificateHealth.certificateHealth(this.id)
 	}
 }
 

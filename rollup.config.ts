@@ -1,123 +1,90 @@
 import resolve from 'rollup-plugin-node-resolve'
+import builtins from 'rollup-plugin-node-builtins'
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
-import camelCase from 'lodash.camelcase'
 import typescript from 'rollup-plugin-typescript2'
 import json from 'rollup-plugin-json'
-import { terser } from 'rollup-plugin-terser'
+import { uglify } from 'rollup-plugin-uglify'
 
 const pkg = require('./package.json')
 const dependencies = Object.keys(pkg.dependencies)
 
+const year = new Date().getFullYear()
+
+function banner(pluginFilename) {
+	return `/*!
+  *
+  * OhDear-js-sdk${pluginFilename ? ` ${pluginFilename}` : ''} v${pkg.version} (${pkg.homepage})
+  * Copyright (c) ${year} ${pkg.author}
+  * Licensed under MIT https://github.com/kamerk22/ohdear-js-sdk/blob/master/LICENSE)
+  * 
+  * 
+  */
+ 
+  `
+}
+
 const libraryName = 'OhDear'
+const globals = {
+	axios: 'axios'
+}
 
 const commonPlugin = [
-	// Allow json resolution
 	json(),
-	// Compile TypeScript files
 	typescript({ useTsconfigDeclarationDir: true }),
-	// Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
+	babel({
+		exclude: 'node_modules/**'
+	}),
 	commonjs(),
-	// Allow node_modules resolution, so you can use 'external' to control
-	// which external modules to include in the bundle
-	// https://github.com/rollup/rollup-plugin-node-resolve#usage
-	resolve(),
-
-	// Resolve source maps to the original source
-	sourceMaps()
+	resolve({ browser: true })
 ]
-
-export default [
-	// {
-	// 	input: `src/${libraryName}.ts`,
-	// 	output: {
-	// 		file: pkg.browser,
-	// 		name: camelCase(libraryName),
-	// 		format: 'umd',
-	// 		sourcemap: true,
-	// 		globals: {
-	// 			axios: 'axios'
-	// 		}
-	// 	},
-
-	// 	// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-	// 	external: ['axios', 'fom-data'],
-	// 	watch: {
-	// 		include: 'src/**'
-	// 	},
-	// 	plugins: [
-	// 		...commonPlugin,
-	// 		babel({
-	// 			exclude: 'node_modules/**'
-	// 		})
-	// 	]
-	// },
-	// {
-	// 	input: `src/${libraryName}.ts`,
-	// 	output: {
-	// 		file: pkg.browser.replace(/\.js$/, '.min.js'),
-	// 		name: camelCase(libraryName),
-	// 		format: 'umd',
-	// 		sourcemap: true,
-	// 		globals: {
-	// 			axios: 'axios'
-	// 		}
-	// 	},
-
-	// 	// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-	// 	external: ['axios', 'fom-data'],
-	// 	watch: {
-	// 		include: 'src/**'
-	// 	},
-	// 	plugins: [
-	// 		...commonPlugin,
-	// 		babel({
-	// 			exclude: 'node_modules/**'
-	// 		}),
-	// 		terser()
-	// 	]
-	// },
-	// {
-	// 	input: `src/${libraryName}.ts`,
-	// 	output: { file: pkg.module, format: 'es', sourcemap: true },
-	// 	// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-	// 	external: ['axios', 'fom-data'],
-	// 	watch: {
-	// 		include: 'src/**'
-	// 	},
-	// 	plugins: [
-	// 		...commonPlugin,
-	// 		babel({
-	// 			exclude: 'node_modules/**'
-	// 		})
-	// 	]
-	// },
+const rollupConfig = [
 	{
 		input: `src/${libraryName}.ts`,
-		output: { file: pkg.main, name: camelCase(libraryName), format: 'cjs', sourcemap: true },
-		// Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
+		output: [
+			{
+				banner,
+				file: pkg.browser,
+				name: libraryName,
+				format: 'iife',
+				sourcemap: true,
+				globals
+			},
+			{
+				banner,
+				file: pkg.main,
+				name: libraryName,
+				format: 'cjs',
+				sourcemap: true,
+				globals
+			}
+		],
 		external: dependencies,
 		watch: {
 			include: 'src/**'
 		},
-		plugins: [
-			// Allow json resolution
-			...commonPlugin,
-			babel({
-				exclude: 'node_modules/**',
-				babelrc: false,
-				presets: [
-					[
-						'@babel/env',
-						{
-							modules: false,
-							useBuiltIns: 'usage',
-							targets: 'maintained node versions'
-						}
-					]
-				]
-			})
-		]
+		plugins: [...commonPlugin, sourceMaps(), builtins()]
+	},
+	{
+		input: `src/${libraryName}.ts`,
+		output: [
+			{
+				banner,
+				footer: banner,
+				file: pkg.browser_min,
+				name: `${libraryName}.js`,
+				format: 'iife',
+				sourcemap: true,
+				globals
+			}
+		],
+		external: dependencies,
+		watch: {
+			include: 'src/**'
+		},
+		plugins: [...commonPlugin, sourceMaps(), builtins(), uglify()]
 	}
 ]
+
+module.exports = rollupConfig

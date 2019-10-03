@@ -61,11 +61,10 @@ export class ManagesSiteService extends ApiService {
 	 * Delete the given site.
 	 *
 	 * @param {number} siteId
-	 * @returns {Promise<Site>}
+	 * @returns {Promise<void>}
 	 * @memberof ManagesSiteService
 	 */
-	public async deleteSite(siteId: number): Promise<Site> {
-		const res = await this.client.delete(`sites/${siteId}`)
-		return new Site(res, this.ohDear)
+	public async deleteSite(siteId: number): Promise<void> {
+		return this.client.delete(`sites/${siteId}`)
 	}
 }
