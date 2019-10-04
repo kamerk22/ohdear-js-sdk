@@ -1,27 +1,119 @@
-# Sites
+---
+title: Sites
 
-## Get your user info with the PHP SDK
-This page will get you started getting your user info with the PHP SDK. Make sure you've read the getting started guide first. Once that's done, you should have our package & authentication ready to go.
+date: 2018-12-28T15:18:13+0200
 
-## Who are you? #
-You can get your user info with the convenient me() method. Behind the scenes, it queries the user info API endpoint.
+description: "Documentation on adding, deleting or modifying the monitoring of your websites with the Oh Dear! SDK."
 
-```
-$user = $ohDear->me();
-The me() method will return an instance of OhDear\PhpSdk\Resources\User.
-```
-```
-$user->name; // returns your name
-$user->email; // returns your email
-```
-You can get the teams you belong to with through the teams property.
+tags:
+  - https
+  - ssl
+  - tls 
+  - certificate
+  - mixed content
+  - monitoring
+  - alerting
+  - javascript sdk
+---
 
+# {{$page.title}}
+
+<Info/>
+
+## List all sites
+Return a list of sites you've previously created in OhDear account.
+
+```js
+let sites = await ohDearInstance.Sites.sites()
 ```
-$teams = $user->teams;
+This will return and array of resource [Site](../api/classes/site.md) instances.
+
+You can access all properties of a site.
+
+## Retrive a site
+Retrive the details of an exsisting site. You need to supply unique **`siteId`** that was returned upon registring a site.
+
+
+```js
+let site = await ohDearInstance.site.site(siteId)
 ```
-The $teams variable is an array of OhDear\PhpSdk\Resources\Team.
+
+#### Arguments
+
+| Parameter          | Type                              | Description                      |
+| :----------------- | :-------------------------------- | :------------------------------- |
+| **siteId**  &nbsp; | <span class="red">required</span> | The unique identifier of a site. |
+
+
+
+## Retrive a site by Url
+Retrive the details of an exsisting site. You need to supply the **`url`** of site.
+
+```js
+let siteByUrl = await client.Site.siteByUrl('https://yourbrandnewsite.tld')
 ```
-$team->id // returns the id of the team
-$team->name // returns the name of the team
+
+#### Arguments
+
+| Parameter           | Type                              | Description        |
+| :------------------ | :-------------------------------- | :----------------- |
+| **siteUrl**  &nbsp; | <span class="red">required</span> | The url of a site. |
+
+
+
+## Registing a site
+Register a new site:
+
+```js
+let siteToAdd = await ohDearInstance.site.createSite({
+  url: 'https://yourbrandnewsite.tld',
+  team_id: 1,
+})`
 ```
-A user can belong to multiple teams. The API key you used to authenticate with belongs to a single user.
+
+To learn how to get the **`team_id`** checkout [UserInfo](../guide/user-info.md).
+
+
+::: tip Tip
+When an **`https`** site is created, all checks will automatically be enabled. When an http site is created only the **`uptime`** and **`broken`** links checks will be enabled.
+:::
+
+To register a site with specific checks:
+
+```js
+let siteToAdd = await ohDearInstance.site.createSite({
+  url: 'https://yourbrandnewsite.tld',
+  team_id: 1,
+  checks: ['uptime', 'broken_links']
+})`
+```
+
+Valid values to pass to checks are **`uptime`**, **`broken_links`**, **`certificate_health`**, **`mixed_content`** and **`certificate_transparency`**.
+
+#### Arguments
+
+| Parameter           | Type                               | Description                                  |
+| :------------------ | :--------------------------------- | :------------------------------------------- |
+| **url**  &nbsp;     | <span class="red">required</span>  | The url of a site for monitor.               |
+| **team_id**  &nbsp; | <span class="red">required</span>  | The team id where this site should be added. |
+| **checks**  &nbsp;  | <span class="grey">optional</span> | Various checks to perform on site.           |
+
+
+## Deleting a site
+Permanently deletes a site and also delete all related checks.
+
+```js
+let siteToDelete = await client.Site.deleteSite(siteId)
+```
+
+#### Arguments
+
+| Parameter          | Type                              | Description                      |
+| :----------------- | :-------------------------------- | :------------------------------- |
+| **siteId**  &nbsp; | <span class="red">required</span> | The unique identifier of a site. |
+
+
+
+For more extensive understanding of the return values, please have a look at [site page API documentation](https://ohdear.app/docs/api/sites).
+
+<HelpBlock/>

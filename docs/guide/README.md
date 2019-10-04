@@ -18,7 +18,7 @@ tags:
 
 # {{$page.title}}
 
-The OhDear Node library provides convenient models and methods to access the OhDear API from applications written in server-side JavaScript. 
+The OhDear Node library provides convenient models and methods to access the OhDear API from applications written in JavaScript. 
 
 Before moving forword we suggest you to checkout [OhDear REST API](https://ohdear.app/docs/api/introduction) documentation. It'll help you get better understanding.
 
@@ -26,17 +26,18 @@ Before moving forword we suggest you to checkout [OhDear REST API](https://ohdea
 
 The SDK currently supports the following services:
 
-| API Name          | Class Name                                                                   | Status |
-| ----------------- | ---------------------------------------------------------------------------- | ------ |
-| User Info         | [OhDear.UserInfo](../api/classes/managesuserservice.md)                      | :tada: |
-| Sites             | [OhDear.Site](../api/classes/managessiteservice.md)                          | :tada: |
-| Check             | [OhDear.Check](../api/classes/managescheckservice.md)                        | :tada: |
-| BrokenLink        | [OhDear.BrokenLink](../api/classes/managesbrokenlinksservice.md)             | :tada: |
-| MixedContent      | [OhDear.MixedContent](../api/classes/managesmixedcontentservice.md)          | :tada: |
-| Uptime            | [OhDear.Uptime](../api/classes/managesuptimeservice.md)                      | :tada: |
-| Downtime          | [OhDear.Downtime](../api/classes/managesdowntimeservice.md)                  | :tada: |
-| CertificateHealth | [OhDear.CertificateHealth](../api/classes/managecertificatehealthservice.md) | :tada: |
-| StatusPage        | [OhDear.StatusPage](../api/classes/managesstatuspageservice.md)              | :tada: |
+| API Name           | Class Name                                                                   | Status |
+| ------------------ | ---------------------------------------------------------------------------- | ------ |
+| Sites              | [OhDear.Site](../api/classes/managessiteservice.md)                          | :tada: |
+| Checks             | [OhDear.Check](../api/classes/managescheckservice.md)                        | :tada: |
+| Broken Links       | [OhDear.BrokenLink](../api/classes/managesbrokenlinksservice.md)             | :tada: |
+| Mixed Content      | [OhDear.MixedContent](../api/classes/managesmixedcontentservice.md)          | :tada: |
+| Uptime             | [OhDear.Uptime](../api/classes/managesuptimeservice.md)                      | :tada: |
+| Downtime           | [OhDear.Downtime](../api/classes/managesdowntimeservice.md)                  | :tada: |
+| Certificate Health | [OhDear.CertificateHealth](../api/classes/managecertificatehealthservice.md) | :tada: |
+| User Info          | [OhDear.UserInfo](../api/classes/managesuserservice.md)                      | :tada: |
+| Status Pages       | [OhDear.StatusPage](../api/classes/managesstatuspageservice.md)              | :tada: |
+| Status Page Update | [OhDear.StatusPageUpdate](../api/classes/managesstatuspageupdateservice.md)  | :tada: |
 
 ## Features
 

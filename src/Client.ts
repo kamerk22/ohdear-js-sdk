@@ -140,7 +140,7 @@ export class Client {
 			throw new Error(error.request)
 		} else {
 			// Something happened in setting up the request and triggered an Error
-			throw new Error(error.message)
+			throw new Error('An unknown Error.')
 		}
 	}
 }

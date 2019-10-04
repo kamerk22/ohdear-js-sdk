@@ -27,6 +27,6 @@ export interface CreateSiteInput {
 	 * @type {CheckTypeEnum[]}
 	 * @memberof CreateSiteInput
 	 */
-	checks: CheckTypeEnum[]
+	checks?: CheckTypeEnum[]
 	[key: string]: any
 }

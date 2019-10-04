@@ -16,6 +16,7 @@
       "classes/managesmixedcontentservice",
       "classes/managessiteservice",
       "classes/managesstatuspageservice",
+      "classes/managesstatuspageupdateservice",
       "classes/managesuptimeservice",
       "classes/managesuserservice",
       "classes/mixedcontent",

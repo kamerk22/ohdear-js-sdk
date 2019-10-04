@@ -9,7 +9,7 @@ describe('Test Certificate Health Module', () => {
 			.get('/api/certificate-health/1')
 			.reply(200, certificateHealthResponse)
 
-		let certificateHealth = await new OhDear('Test').CertificateHealth.certificateHealth(1)
+		let certificateHealth = await new OhDear('Test').CertificateHealth.certificate(1)
 		expect(certificateHealth).toBeInstanceOf(CertificateHealth)
 	})
 })

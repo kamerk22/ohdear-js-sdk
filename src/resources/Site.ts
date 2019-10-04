@@ -175,8 +175,8 @@ export class Site {
 	 * @returns {Promise<CertificateHealth>}
 	 * @memberof Site
 	 */
-	public certificateHealth(): Promise<CertificateHealth> {
-		return this.ohDear.CertificateHealth.certificateHealth(this.id)
+	public certificate(): Promise<CertificateHealth> {
+		return this.ohDear.CertificateHealth.certificate(this.id)
 	}
 }
 

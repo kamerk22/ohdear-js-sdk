@@ -16,7 +16,7 @@ export class ManageCertificateHealthService extends ApiService {
 	 * @returns {Promise<CertificateHealth>}
 	 * @memberof ManageCertificateHealthService
 	 */
-	public async certificateHealth(siteId: number): Promise<CertificateHealth> {
+	public async certificate(siteId: number): Promise<CertificateHealth> {
 		const res = await this.client.get(`certificate-health/${siteId}`)
 		return new CertificateHealth(res)
 	}

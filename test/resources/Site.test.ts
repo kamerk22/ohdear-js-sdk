@@ -180,7 +180,7 @@ describe('Test Site Module', () => {
 			.get('/api/certificate-health/1')
 			.reply(200, certificateHealthResponse)
 
-		let certificateHealth = await sites.certificateHealth()
+		let certificateHealth = await sites.certificate()
 		expect(certificateHealth).toBeInstanceOf(CertificateHealth)
 	})
 })

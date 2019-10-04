@@ -18,6 +18,10 @@ tags:
 
 # {{$page.title}}
 
+This SDK can be used in browser and nodejs.
+
+
+## For Node.js
 ::: warning COMPATIBILITY NOTE
 OhDear Node SDK requires Node.js >= 8.
 :::
@@ -43,17 +47,23 @@ OR
 npm install oh-dear-sdk
 ```
 
-## Authentication
+# Authentication
 
 You can use API key for authentication. If you don't have an API key yet, read up on the [API authentication first](https://ohdear.app/docs/api/authentication).
 
 
 Next, create an instance of the SDK. This takes your API key as a single, mandatory, parameter.
 
-``` bash
-const lib = require('ohdear-ndoe-sdk');
+``` js
+const ohDear = require('ohdear-node-sdk');
 
-const OhDear = new lib('YOUR_API_KEY');
+// Use this instacne to perform all operation
+const ohDearInstance = new ohDear('YOUR_API_KEY');
+```
+
+Alternatively you can do this
+```js
+const ohDearInstance = (new require('ohdear-node-sdk'))('YOUR_API_KEY)
 ```
 
 

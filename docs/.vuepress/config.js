@@ -18,11 +18,11 @@ module.exports = {
 		['autometa', SEO],
 		['@vuepress/back-to-top', true],
 		[
-			'@vuepress/pwa',
+			('@vuepress/pwa',
 			{
 				serviceWorker: true,
 				updatePopup: true
-			}
+			})
 		]
 	],
 	smoothScroll: true,
@@ -51,7 +51,6 @@ function getGuideSidebar(groupA, groupB) {
 			title: groupB,
 			collapsable: false,
 			children: [
-				['user-info', 'User Info'],
 				'sites',
 				'checks',
 				'uptime',
@@ -59,6 +58,7 @@ function getGuideSidebar(groupA, groupB) {
 				'broken-links',
 				'mixed-content',
 				'certificate-health',
+				['user-info', 'User Info'],
 				'status-pages',
 				['status-page-update', 'Status Page Update']
 			]
