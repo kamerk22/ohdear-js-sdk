@@ -56,7 +56,7 @@ You can use API key for authentication. If you don't have an API key yet, read u
 Next, create an instance of the SDK. This takes your API key as a single, mandatory, parameter.
 
 ```js
-const ohDear = require('ohdear-node-sdk')
+const ohDear = require('ohdear-ts-sdk')
 
 // Use this instacne to perform all operation
 const ohDearInstance = new ohDear('YOUR_API_KEY')
@@ -65,7 +65,7 @@ const ohDearInstance = new ohDear('YOUR_API_KEY')
 Alternatively you can do this
 
 ```js
-const ohDearInstance = (new require('ohdear-node-sdk'))('YOUR_API_KEY)
+const ohDearInstance = (new require('ohdear-ts-sdk'))('YOUR_API_KEY)
 ```
 
 <HelpBlock/>
