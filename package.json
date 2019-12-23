@@ -39,7 +39,8 @@
 		"docs:dev": "vuepress dev docs",
 		"docs:build": "vuepress build docs",
 		"cp:api": " ts-node tools/generate-docs",
-		"docs:api": "typedoc --out api --target es6 --theme typedoc-plugin-markdown --theme vuepress --mode file src && npm run cp:api"
+		"docs:api": "typedoc --out api --target es6 --theme typedoc-plugin-markdown --theme vuepress --mode file src && npm run cp:api",
+		"deploy": "docs:api && docs:build"
 	},
 	"lint-staged": {
 		"{src,test}/**/*.ts": [
