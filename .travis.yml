@@ -1,7 +1,7 @@
 language: node_js
 cache:
   directories:
-    - ~/.npm
+    - '~/.npm'
 notifications:
   email: false
 node_js:
@@ -12,8 +12,13 @@ script:
   - npm run test:prod && npm run build
 after_success:
   - npm run travis-deploy-once "npm run report-coverage"
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run deploy-docs"; fi
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run semantic-release"; fi
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm
+    run travis-deploy-once "npm run deploy-docs"; fi
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm
+    run travis-deploy-once "npm run semantic-release"; fi
 branches:
   except:
-    - /^v\d+\.\d+\.\d+$/
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
+env:
+  global:
+    secure: zAx/c1Dcx/Myrgtre/e17oj74s9gJ+voAaTtpzvSaginEG+Uie+pWwUWWBUI+SS0XsBz1RnMRU0k1E7BuCd9mXhVLzntJniBWN8gqjMfUknYIo3v2RQtHZ8v7c3t/h//pWKYTC1LQURLnez+u+iWjlszHnlfBCF7R5146cUSkbJRmrf8lWK9G3WLHsncQIZo1E++5JtibYUE3Rd3oVhYe0k3KnKSh1klqLijdb6y/jguAWtQ13COu0NOJm5kUBsnSXrno8HO/kOsSEhYYDJneuNs1x8VTrnpX/vpiqBKNIf9/4WiPaVVUBhRttzZb8HglskOy3bZQQ1W+64ROisj+SfQX40q8qvEuzYbI4Dhl9NC9A4/Luhp01uEI+wedn88kmEZPcwsoXHGIwVuLnQJ8eaBQCSYjydIGoHjHiPOrWjKFyMiu0Oj0r5uU+UfuyqTZNFAwpp8eig1wEKRHvin7AIaVtxkbtqSW0nY5/p85pSD+eGmBf0wT4F5P9WuQ08YuDlqrLWCq4br2p4E6bazaUvoR5A+gsiJBLirdDBZjcG1OwAgUFMFMTgRKe/sZqvEXgko9fD2yhfZmyRZ9va2SGlTybITcaRy0rAycGmaph+GjX5X0nmjnsMu7gHCc9ZPt2JXxpOuYrDfIaWnBH8U0jmhHf7QD0sNM/kx1NpPFWw=
