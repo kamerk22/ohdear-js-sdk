@@ -2,6 +2,7 @@ const API = require('./api-sidebar.json')
 const SEO = require('./seo')
 
 module.exports = {
+	base: '/ohdear-js-sdk/',
 	title: 'Oh Dear! Javascript SDK',
 	description: 'Javascript SDK to work with the Oh Dear API.',
 	head: [
