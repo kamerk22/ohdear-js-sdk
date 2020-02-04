@@ -14,7 +14,7 @@
 	"homepage": "https://kamerk22.github.io/ohdear-js-sdk",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kamerk22/ohdear-js-sdk"
+		"url": "git+https://github.com/kamerk22/ohdear-js-sdk.git"
 	},
 	"license": "MIT",
 	"engines": {
