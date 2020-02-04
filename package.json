@@ -1,7 +1,7 @@
 {
 	"name": "ohdear-js-sdk",
 	"version": "0.0.0",
-	"description": "",
+	"description": "Javascript SDK to work with the Oh Dear API.",
 	"keywords": [],
 	"main": "dist/ohdear-js-sdk.cjs.js",
 	"browser": "dist/ohdear-js-sdk.js",
@@ -23,12 +23,12 @@
 	"scripts": {
 		"lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
 		"prebuild": "rimraf dist",
-		"build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out api --target es6 --theme typedoc-plugin-markdown --theme vuepress --mode file src",
+		"build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out api --target es6 --theme typedoc-plugin-markdown --theme vuepress --mode file src && npm run cp:api",
 		"start": "rollup -c rollup.config.ts -w",
 		"test": "jest --coverage --detectOpenHandles",
 		"test:watch": "jest --coverage --watch",
 		"test:prod": "npm run lint && npm run test -- --no-cache",
-		"deploy-docs": "ts-node tools/gh-pages-publish",
+		"deploy-docs": "npm run docs:build && ts-node tools/gh-pages-publish",
 		"report-coverage": "cat ./coverage/lcov.info | coveralls",
 		"commit": "git-cz",
 		"semantic-release": "semantic-release",
